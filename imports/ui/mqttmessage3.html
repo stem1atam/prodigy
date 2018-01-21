@@ -1,0 +1,56 @@
+
+<template  name="mqttmessage3">
+     <div class="col-lg-3 col-md-6 col-sm-6">
+                            <div class="card card-stats">
+                                 <div class="card-header" data-background-color="orange" >
+                                    {{#if online}}
+                                          <i class="material-icons">router</i>
+                                    {{/if}}
+                                    {{#unless online}}
+                                          <i class="material-icons">signal_wifi_off</i>
+                                    {{/unless}}
+                                </div>
+                                <div class="card-content nav">
+                                    <p class="category">{{name}} {{#if online}} Online {{/if}}{{#unless online}} Offline {{/unless}}</p>
+                                    {{#each variables}}
+                                      {{#unless stats}}
+                                       {{#unless actuator}} <h3 class="title"><i class={{type}}></i> <small>{{value}} [ {{unit}} ]</small> </h3>{{/unless}}
+                                      {{/unless}}
+                                    {{/each}}
+
+                                    {{#each variables}}
+                                      {{#unless stats}}
+                                           {{#if actuator}}<h3 class="title"> <li class="active">
+                                                         <form class="relayform">
+                                                             <button class=relaybutton type="submit" data-toggle="tab" aria-expanded="true" name="relaybutton">
+                                                                 <i class='{{type}} text-gray'> <small> {{value}} </small> </i>
+                                                                 <div class="ripple-container"></div>
+                                                             </button>
+                                                             <input type="hidden" name="topic" value={{topic}} />
+                                                             <input type="hidden" name="message" value={{value}} />
+                                                          </form>
+
+                                                       </li> </h3>
+                                            {{/if}}
+                                      {{/unless}}
+                                    {{/each}}
+                                </div>
+                                <div class="card-footer">
+
+                                    <div class="stats">
+                                      <span class="dropdown">
+                                          <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                                               <i class="material-icons">settings</i> Device Stats
+                                          </a>
+                                          <ul class="dropdown-menu">
+                                            {{#each variables}}
+                                              {{#if stats}} <li>{{name}} : {{value}} </li> {{/if}}
+                                            {{/each}}
+                                          </ul>
+                                      </span>
+
+                                    </div>
+                                </div>
+                            </div>
+       </div>
+</template>

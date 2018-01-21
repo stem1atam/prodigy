@@ -1,0 +1,11 @@
+{
+  "name": "prodigy",
+  "private": true,
+  "scripts": {
+    "start": "meteor run"
+  },
+  "dependencies": {
+    "jquery": "^3.2.1",
+    "meteor-node-stubs": "~0.2.0"
+  }
+}
